@@ -1,4 +1,4 @@
-# qzb-hdfs-demo
+# hdfs-demo
 使用Java API操作HDFS分布式文件系统
 
 1. demo概述

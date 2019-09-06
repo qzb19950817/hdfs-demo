@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * swagger配置文件
  *
  * @author QZB
- * @create 2019-08-27-17:48
+ * @create 2019-08-27 17:48
  */
 @Configuration
 @EnableSwagger2

@@ -1,12 +1,12 @@
 package com.szewec.utils;
 
-
 import java.util.List;
 
 /**
- * 接口响应数据封装工具类
+ * 接口响应工具类
  *
- * @author zhujindan
+ * @author QZB
+ * @create 2019-08-27 17:48
  */
 public class ResponseUtil {
     /**

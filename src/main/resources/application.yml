@@ -1,7 +1,7 @@
 ##HDFS文件系统服务器的地址以及端口
 hdfs:
   path: hdfs://10.3.6.124:8020
-  user: hdfs
+  user: root
 
 ###swagger配置（有yml配置和class配置两种方式，本demo采用class配置）
 #swagger:

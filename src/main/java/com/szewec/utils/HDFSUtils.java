@@ -1,6 +1,7 @@
 package com.szewec.utils;
 
 import com.szewec.entity.HDFSResource;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
@@ -8,14 +9,13 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.permission.FsPermission;
 import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.util.Progressable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +27,7 @@ import java.util.List;
  * @create 2019-08-27-17:34
  */
 @Component
+@Slf4j
 public class HDFSUtils {
     // HDFS文件系统服务器的地址以及端口
     private static String HDFS_PATH;
@@ -36,8 +37,6 @@ public class HDFSUtils {
     private static FileSystem fileSystem = null;
     // 配置对象
     private static Configuration configuration = null;
-    // 日志对象
-    private static Logger logger = LoggerFactory.getLogger(HDFSUtils.class);
 
     @Value("${hdfs.path}")
     private String hdfsPath;
@@ -183,13 +182,13 @@ public class HDFSUtils {
 
             for (FileStatus fileStatus : fileStatuses) {
                 hdfsResource = new HDFSResource();
-               /* logger.info("这是一个：" + (fileStatus.isDirectory() ? "文件夹" : "文件"));
-                logger.info("副本系数：" + fileStatus.getReplication());
-                logger.info("大小：" + fileStatus.getLen());
-                logger.info("路径：" + fileStatus.getPath() + "\n");*/
+               /* log.info("这是一个：" + (fileStatus.isDirectory() ? "文件夹" : "文件"));
+                log.info("副本系数：" + fileStatus.getReplication());
+                log.info("大小：" + fileStatus.getLen());
+                log.info("路径：" + fileStatus.getPath() + "\n");*/
                 hdfsResource.setPath(fileStatus.getPath().toString());
                 hdfsResource.setLength(fileStatus.getLen());
-                hdfsResource.setSize(formatFileSize(fileStatus.getLen()));
+                hdfsResource.setSize(FileUtils.formatFileSize(fileStatus.getLen()));
 
                 if (fileStatus.isDirectory()) {
                     hdfsResource.setType("目录");
@@ -199,9 +198,9 @@ public class HDFSUtils {
 
                 hdfsResource.setReplication(fileStatus.getReplication());
                 hdfsResource.setBlocklength(fileStatus.getBlockSize());
-                hdfsResource.setBlockSize(formatFileSize(fileStatus.getBlockSize()));
-                hdfsResource.setModificationTime(DateUtil.format(new Date(fileStatus.getModificationTime()), "yyyy-MM-dd HH:mm:ss"));
-                hdfsResource.setAccessTime(DateUtil.format(new Date(fileStatus.getAccessTime()), "yyyy-MM-dd HH:mm:ss"));
+                hdfsResource.setBlockSize(FileUtils.formatFileSize(fileStatus.getBlockSize()));
+                hdfsResource.setModificationTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(fileStatus.getModificationTime())));
+                hdfsResource.setAccessTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(fileStatus.getAccessTime())));
                 hdfsResource.setPermission(fileStatus.getPermission());
                 hdfsResource.setOwner(fileStatus.getOwner());
                 hdfsResource.setGroup(fileStatus.getGroup());
@@ -424,33 +423,5 @@ public class HDFSUtils {
             throw new Exception("要设置HDFS副本系数的资源不存在！");
         }
         fileSystem.setReplication(new Path(resourceName), count);
-    }
-
-    /**
-     * 格式化资源大小
-     *
-     * @param length 真实资源大小
-     * @return
-     */
-    private static String formatFileSize(long length) {
-        String result = null;
-        int sub_string = 0;
-        if (length >= 1073741824) {
-            sub_string = String.valueOf((float) length / 1073741824).indexOf(
-                    ".");
-            result = ((float) length / 1073741824 + "000").substring(0,
-                    sub_string + 3) + "GB";
-        } else if (length >= 1048576) {
-            sub_string = String.valueOf((float) length / 1048576).indexOf(".");
-            result = ((float) length / 1048576 + "000").substring(0,
-                    sub_string + 3) + "MB";
-        } else if (length >= 1024) {
-            sub_string = String.valueOf((float) length / 1024).indexOf(".");
-            result = ((float) length / 1024 + "000").substring(0,
-                    sub_string + 3) + "KB";
-        } else if (length < 1024)
-            result = Long.toString(length) + "B";
-
-        return result;
     }
 }

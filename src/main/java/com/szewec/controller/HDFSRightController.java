@@ -6,9 +6,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,14 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
  * HDFS用户权限管理控制器
  *
  * @author QZB
- * @create 2019-08-28-17:04
+ * @create 2019-08-28 17:04
  */
 @RestController
 @RequestMapping("/api/hdfs/right")
 @Api(value = "HDFS用户权限管理")
+@Slf4j
 public class HDFSRightController {
-    private static Logger logger = LoggerFactory.getLogger(HDFSRightController.class);
-
     @PostMapping(value = "/setPermission")
     @ApiOperation(value = "设置HDFS资源权限", notes = "设置HDFS资源权限")
     @ApiImplicitParams({
@@ -42,7 +40,7 @@ public class HDFSRightController {
                 return ResponseUtil.failedResponse("HDFS资源权限设置失败！", "HDFS资源名称或权限编码为空！");
             }
         } catch (Exception e) {
-            logger.error("HDFS资源权限设置异常！", e);
+            log.error("HDFS资源权限设置异常！", e);
             return ResponseUtil.failedResponse("HDFS资源权限设置异常！", e.getMessage());
         }
     }
@@ -63,7 +61,7 @@ public class HDFSRightController {
                 return ResponseUtil.failedResponse("HDFS资源所属者和所属组设置失败！", "HDFS资源名称或所属者信息为空！");
             }
         } catch (Exception e) {
-            logger.error("HDFS资源所属者和所属组设置异常！", e);
+            log.error("HDFS资源所属者和所属组设置异常！", e);
             return ResponseUtil.failedResponse("HDFS资源所属者和所属组设置异常！", e.getMessage());
         }
     }
@@ -88,7 +86,7 @@ public class HDFSRightController {
                 return ResponseUtil.failedResponse("HDFS资源副本系数设置失败！", "HDFS资源名称为空！");
             }
         } catch (Exception e) {
-            logger.error("HDFS资源副本系数设置异常！", e);
+            log.error("HDFS资源副本系数设置异常！", e);
             return ResponseUtil.failedResponse("HDFS资源副本系数设置异常！", e.getMessage());
         }
     }

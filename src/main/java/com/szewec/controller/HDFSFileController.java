@@ -6,10 +6,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,14 +23,13 @@ import java.util.List;
  * HDFS目录文件控制器
  *
  * @author QZB
- * @create 2019-08-27-17:31
+ * @create 2019-08-27 17:31
  */
 @RestController
 @RequestMapping("/api/hdfs/file")
 @Api(value = "HDFS文件管理")
+@Slf4j
 public class HDFSFileController {
-    private static Logger logger = LoggerFactory.getLogger(HDFSFileController.class);
-
     @GetMapping(value = "/isExist")
     @ApiOperation(value = "判断文件是否存在", notes = "判断文件是否存在")
     @ApiImplicitParams({
@@ -45,7 +43,7 @@ public class HDFSFileController {
                 return ResponseUtil.failedResponse("判断文件是否存在失败！", "文件名称为空！");
             }
         } catch (Exception e) {
-            logger.error("判断文件是否存在异常！", e);
+            log.error("判断文件是否存在异常！", e);
             return ResponseUtil.failedResponse("判断文件是否存在异常！", e.getMessage());
         }
     }
@@ -63,7 +61,7 @@ public class HDFSFileController {
                 return ResponseUtil.failedResponse("判断某个文件名称是否是真实文件失败！", "文件名称为空！");
             }
         } catch (Exception e) {
-            logger.error("判断某个文件名称是否是真实文件异常！", e);
+            log.error("判断某个文件名称是否是真实文件异常！", e);
             return ResponseUtil.failedResponse("判断某个文件名称是否是真实文件异常！", e.getMessage());
         }
     }
@@ -83,7 +81,7 @@ public class HDFSFileController {
                 return ResponseUtil.failedResponse("文件重命名失败！", "文件名称为空！");
             }
         } catch (Exception e) {
-            logger.error("文件重命名异常！", e);
+            log.error("文件重命名异常！", e);
             return ResponseUtil.failedResponse("文件重命名异常！", e.getMessage());
         }
     }
@@ -101,7 +99,7 @@ public class HDFSFileController {
                 return ResponseUtil.failedResponse("文件删除失败！", "文件名称为空！");
             }
         } catch (Exception e) {
-            logger.error("文件删除异常！", e);
+            log.error("文件删除异常！", e);
             return ResponseUtil.failedResponse("文件删除异常！", e.getMessage());
         }
     }
@@ -120,7 +118,7 @@ public class HDFSFileController {
                 return ResponseUtil.failedResponse("查看文件内容失败！", "文件名称为空！");
             }
         } catch (Exception e) {
-            logger.error("查看文件内容异常！", e);
+            log.error("查看文件内容异常！", e);
             return ResponseUtil.failedResponse("查看文件内容异常！", e.getMessage());
         }
     }
@@ -140,7 +138,7 @@ public class HDFSFileController {
                 return ResponseUtil.failedResponse("文件创建失败！", "文件创建为空！");
             }
         } catch (Exception e) {
-            logger.error("文件创建异常！", e);
+            log.error("文件创建异常！", e);
             return ResponseUtil.failedResponse("文件创建异常！", e.getMessage());
         }
     }
@@ -160,7 +158,7 @@ public class HDFSFileController {
                 return ResponseUtil.failedResponse("文件上传失败！", "本地文件路径或目标文件夹为空！");
             }
         } catch (Exception e) {
-            logger.error("文件上传异常！", e);
+            log.error("文件上传异常！", e);
             return ResponseUtil.failedResponse("文件上传异常！", e.getMessage());
         }
     }
@@ -180,7 +178,7 @@ public class HDFSFileController {
                 return ResponseUtil.failedResponse("文件上传失败！", "本地文件路径或目标文件夹为空！");
             }
         } catch (Exception e) {
-            logger.error("文件上传异常！", e);
+            log.error("文件上传异常！", e);
             return ResponseUtil.failedResponse("文件上传异常！", e.getMessage());
         }
     }
@@ -205,7 +203,7 @@ public class HDFSFileController {
                 return ResponseUtil.failedResponse("文件上传失败！", "目标文件夹或文件信息为空！");
             }
         } catch (Exception e) {
-            logger.error("文件上传异常！", e);
+            log.error("文件上传异常！", e);
             return ResponseUtil.failedResponse("文件上传异常！", e.getMessage());
         }
     }
@@ -225,7 +223,7 @@ public class HDFSFileController {
                 return ResponseUtil.failedResponse("文件下载失败！", "HDFS上文件名称或目标文件夹为空！");
             }
         } catch (Exception e) {
-            logger.error("文件下载异常！", e);
+            log.error("文件下载异常！", e);
             return ResponseUtil.failedResponse("文件下载异常！", e.getMessage());
         }
     }

@@ -6,9 +6,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
  * HDFS目录管理控制器
  *
  * @author QZB
- * @create 2019-08-27-17:31
+ * @create 2019-08-27 17:31
  */
 @RestController
 @RequestMapping("/api/hdfs/director")
 @Api(value = "HDFS目录管理")
+@Slf4j
 public class HDFSDirectorController {
-    private static Logger logger = LoggerFactory.getLogger(HDFSDirectorController.class);
 
     @GetMapping(value = "/isExist")
     @ApiOperation(value = "判断目录是否存在", notes = "判断目录是否存在")
@@ -39,7 +38,7 @@ public class HDFSDirectorController {
                 return ResponseUtil.failedResponse("判断目录是否存在失败！", "目录名称为空！");
             }
         } catch (Exception e) {
-            logger.error("判断目录是否存在异常！", e);
+            log.error("判断目录是否存在异常！", e);
             return ResponseUtil.failedResponse("判断目录是否存在异常！", e.getMessage());
         }
     }
@@ -57,7 +56,7 @@ public class HDFSDirectorController {
                 return ResponseUtil.failedResponse("判断某个目录名称是否是真实目录失败！", "目录名称为空！");
             }
         } catch (Exception e) {
-            logger.error("判断某个目录名称是否是真实目录异常！", e);
+            log.error("判断某个目录名称是否是真实目录异常！", e);
             return ResponseUtil.failedResponse("判断某个目录名称是否是真实目录异常！", e.getMessage());
         }
     }
@@ -75,7 +74,7 @@ public class HDFSDirectorController {
                 return ResponseUtil.failedResponse("递归新增目录失败！", "目录名称为空！");
             }
         } catch (Exception e) {
-            logger.error("递归新增目录异常！", e);
+            log.error("递归新增目录异常！", e);
             return ResponseUtil.failedResponse("递归新增目录异常！", e.getMessage());
         }
     }
@@ -93,7 +92,7 @@ public class HDFSDirectorController {
                 return ResponseUtil.failedResponse("递归删除目录失败！", "目录名称为空！");
             }
         } catch (Exception e) {
-            logger.error("递归删除目录异常！", e);
+            log.error("递归删除目录异常！", e);
             return ResponseUtil.failedResponse("递归删除目录异常！", e.getMessage());
         }
     }
@@ -112,7 +111,7 @@ public class HDFSDirectorController {
                 return ResponseUtil.failedResponse("目录重命名（移动）失败！", "目录名称为空！");
             }
         } catch (Exception e) {
-            logger.error("目录重命名（移动）异常！", e);
+            log.error("目录重命名（移动）异常！", e);
             return ResponseUtil.failedResponse("目录重命名（移动）异常！", e.getMessage());
         }
     }
@@ -130,7 +129,7 @@ public class HDFSDirectorController {
                 return ResponseUtil.failedResponse("资源查看失败！", "目录名称为空！");
             }
         } catch (Exception e) {
-            logger.error("资源查看异常！", e);
+            log.error("资源查看异常！", e);
             return ResponseUtil.failedResponse("资源查看异常！", e.getMessage());
         }
     }

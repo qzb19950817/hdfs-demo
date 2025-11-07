@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EasyCodeTableSetting">
+    <option name="tableInfoMap">
+      <map>
+        <entry key="im.chat_backups" value="eyJuYW1lIjoiQ2hhdEJhY2t1cHMiLCJwcmVOYW1lIjoiIiwidGVtcGxhdGVHcm91cE5hbWUiOiIiLCJmdWxsQ29sdW1uIjpbeyJuYW1lIjoiaWQiLCJ0eXBlIjoiamF2YS5sYW5nLkxvbmciLCJjdXN0b20iOmZhbHNlLCJleHQiOiJ7fSJ9LHsibmFtZSI6InVzZXJJZCIsInR5cGUiOiJqYXZhLmxhbmcuTG9uZyIsImN1c3RvbSI6ZmFsc2UsImV4dCI6Int9In0seyJuYW1lIjoiYmFja3VwRmlsZVVybCIsInR5cGUiOiJqYXZhLmxhbmcuU3RyaW5nIiwiY3VzdG9tIjpmYWxzZSwiZXh0Ijoie30ifSx7Im5hbWUiOiJmaWxlU2l6ZSIsInR5cGUiOiJqYXZhLmxhbmcuTG9uZyIsImN1c3RvbSI6ZmFsc2UsImV4dCI6Int9In0seyJuYW1lIjoiYmFja3VwVHlwZSIsInR5cGUiOiJqYXZhLmxhbmcuU3RyaW5nIiwiY3VzdG9tIjpmYWxzZSwiZXh0Ijoie30ifSx7Im5hbWUiOiJjcmVhdGVkQXQiLCJ0eXBlIjoiamF2YS51dGlsLkRhdGUiLCJjdXN0b20iOmZhbHNlLCJleHQiOiJ7fSJ9XSwic2F2ZVBhY2thZ2VOYW1lIjoiIiwic2F2ZVBhdGgiOiIiLCJzYXZlTW9kZWxOYW1lIjoiIn0=" />
+      </map>
+    </option>
+  </component>
+</project>
